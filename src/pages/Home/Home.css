@@ -1,0 +1,17 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+    background-color: #f5f5f5; /* Un fondo suave */
+  }
+  
+  .home-title {
+    color: #ED6306;
+    margin: 0 0 40px 0; /* Ajusta el margen según necesites */
+    font-size: 2.5rem; /* Tamaño de fuente grande */
+    text-align: center;
+  }
+
+  
