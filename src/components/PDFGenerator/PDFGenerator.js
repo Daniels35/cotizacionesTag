@@ -64,15 +64,24 @@ const PDFGenerator = ({ title, description, items }) => {
     // Descripción sin bordes
     const descriptionStartY = doc.lastAutoTable.finalY + 10;
     doc.setFontSize(10);
-    doc.text(description, 20, doc.lastAutoTable.finalY + 10, { maxWidth: pageWidth - 40 });
+    doc.text(description, 20, descriptionStartY, { maxWidth: pageWidth - 40 });
 
-    // Vigencia de la cotización
-    doc.text(`*Cotización valida por 15 días a partir día de envío (${formattedDate})`, 20, descriptionStartY + 30);
+    // Estimación del espacio que ocupa la descripción. 
+    // Ajusta este valor según la longitud promedio y la altura estimada de tu descripción
+    const estimatedDescriptionHeight = 20; 
+
+    // Vigencia de la cotización (usando el espacio estimado después de la descripción)
+    const validityStartY = descriptionStartY + estimatedDescriptionHeight;
+    doc.text(`*Cotización valida por 15 días a partir día de envío (${formattedDate})`, 20, validityStartY + 20);
+
+    // Estimación del espacio entre la vigencia de la cotización y el texto de entusiasmo
+    const spaceAfterValidity = 20; // Ajusta este valor según necesites
 
     // Texto de entusiasmo en el medio del documento
     doc.setFontSize(14); // Tamaño de fuente más grande para el texto de entusiasmo
     doc.setFont(undefined, 'bold'); // Texto en negrita
-    doc.text("¡Estamos emocionados de ser parte de su equipo!", pageWidth / 2, descriptionStartY + 50, 'center');
+    // Asegúrate de calcular la posición en Y correctamente para el texto de entusiasmo
+    doc.text("¡Estamos emocionados de ser parte de su equipo!", pageWidth / 2, validityStartY + 20 + spaceAfterValidity, 'center');
     
     // Volver al estilo y tamaño de fuente normal para el texto siguiente
     doc.setFont(undefined, 'normal'); // Estilo de fuente normal
